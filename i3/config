@@ -5,13 +5,13 @@ hide_edge_borders both
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: Cantarell 9
+font pango: Sans 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -83,14 +83,14 @@ bindsym $mod+a focus parent
 # setting workspace names
 set $workspace1 "1:  Terminal |"
 set $workspace2 "2:  Chromium |"
-set $workspace3 "3:  Editor |"
+set $workspace3 "3:  Random |"
 set $workspace4 "4:  Chat |"
 set $workspace5 "5:  Random |"
-set $workspace6 "6:  Editor |"
+set $workspace6 "6:  Editor |"
 set $workspace7 "7:  Spotify |"
-set $workspace8 "8:  Evolution |"
-set $workspace9 "9:  Files |"
-set $workspace10 "10:  Monitoring |"
+set $workspace8 "8:  Editor |"
+set $workspace9 "9:  Extra |"
+set $workspace10 "10:  Email |"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -119,14 +119,12 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 
 
 # workspace default monitors
-workspace $workspace1 output DVI-I-1
-workspace $workspace2 output DP-0
-workspace $workspace3 output DP-1
-workspace $workspace4 output DP-1
-workspace $workspace5 output DP-1
+workspace $workspace1 output DP-0
+workspace $workspace2 output DP-1
+workspace $workspace3 output DVI-I-1
+workspace $workspace4 output DVI-I-1
+workspace $workspace5 output DVI-I-1
 workspace $workspace7 output DVI-I-1
-workspace $workspace8 output DP-0
-workspace $workspace9 output DVI-I-1
 workspace $workspace10 output VGA-1-1
 
 
@@ -173,37 +171,38 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $bg-color 	         #333a3c
-set $inactive-bg-color   #333a3c
-set $text-color          #FFFFFF
-set $inactive-text-color #676E7D
+set $bg-color 	         #3e424f
+set $inactive-bg-color   #3e424f
+set $text-color          #3d7cc9
+set $inactive-text-color #c6ccd5
 set $urgent-bg-color     #E53935
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #2f343f
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color  #2f343f
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color  #2f343f
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #2f343f
+client.focused          $bg-color           $bg-color          $text-color          #002b36
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color  #002b36
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color  #002b36
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #002b36
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#        status_command i3blocks -c /home/hegole/.config/i3/i3blocks.conf
-#	      position top
-#        tray_output primary
-#
-#        colors {
-#          background $bg-color
-#    	    separator #757575
-#  		      #                  border             background         text
-#		        focused_workspace  $bg-color          $bg-color          $text-color
-#	          inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-#	          urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-#        }
-#}
+ #Start i3bar to display a workspace bar (plus the system information i3status
+ #finds out, if available)
+bar {
+        status_command i3blocks -c /home/hegole/.config/i3/i3blocks.conf
+	position top
+        tray_output primary
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+        colors {
+          background $bg-color
+    	    separator #3d7cc9
+  		      #                  border             background         text
+		      focused_workspace  $bg-color          $bg-color          $text-color
+	          inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+	          urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+              active_workspace   $inactive-bg-color $inactive-bg-color $inactive-text-color
+        }
+}
+
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # key-bindings
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -227,7 +226,7 @@ exec --no-startup-id clipit
 
 
 # set auto lock
-exec --no-startup-id xautolock time 10 -locker /home/hegole/.config/i3/lock.sh
+exec_always xautolock -time 10 -locker /home/hegole/.config/i3/lock.sh
 
 # set screen layout
 exec --no-startup-id ~/.screenlayout/screenlayout.sh
