@@ -9,8 +9,12 @@
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerline"
 
-#POWERLINE_RIGHT_B="none"
-#POWERLINE_DETECT_SSH="true"
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -54,13 +58,14 @@ ZSH_THEME="powerline"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git, tmux)
+plugins=(
+  git
+  tmux
+)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-POWERLINE_RIGHT_B="none"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -88,4 +93,4 @@ POWERLINE_RIGHT_B="none"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export TERM=xterm
+alias vag="vagrant"
