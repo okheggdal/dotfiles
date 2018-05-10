@@ -31,12 +31,6 @@ bindsym $mod+d exec rofi -show drun -m -2  -fg "#f1f1f1"   -bg "#333333"   -hlfg
 # bindsym $mod+d exec --no-startup-id i3-dmenks desktop
 #<theme>
 # change focusmkdir ~/.i3/lemonbar && git clone https://github.com/mirekys/i3-lemonbar.git ~/.i3/lemonbar
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -81,16 +75,16 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # setting workspace names
-set $workspace1 "1:  Terminal |"
-set $workspace2 "2:  Chromium |"
-set $workspace3 "3:  Random |"
-set $workspace4 "4:  Chat |"
-set $workspace5 "5:  Random |"
-set $workspace6 "6:  Editor |"
-set $workspace7 "7:  Spotify |"
-set $workspace8 "8:  Editor |"
-set $workspace9 "9:  Extra |"
-set $workspace10 "10:  Email |"
+set $workspace1 "1:  Matrix"
+set $workspace2 "2:  Browser"
+set $workspace3 "3:  Editor"
+set $workspace4 "4:  Chat"
+set $workspace5 "5:  Music"
+set $workspace6 "6:  Gimp"
+set $workspace7 "7: Transfer"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -117,27 +111,6 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
-
-# workspace default monitors
-workspace $workspace1 output DP-0
-workspace $workspace2 output DP-1
-workspace $workspace3 output DVI-I-1
-workspace $workspace4 output DVI-I-1
-workspace $workspace5 output DVI-I-1
-workspace $workspace7 output DVI-I-1
-workspace $workspace10 output VGA-1-1
-
-
-# default workspaces
-assign [class="Termite"] $workspace1
-assign [class="Slack"] $workspace4
-assign [class="Pidgin"] $workspace4
-assign [class="Rednotebook"] $workspace3
-assign [class="Scudcloud"] $workspace4
-assign [class="subl3"] $workspace6
-assign [class="Spotify"] $workspace7
-
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -153,12 +126,6 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
@@ -171,8 +138,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $bg-color 	         #3e424f
-set $inactive-bg-color   #3e424f
+set $bg-color 	         #16161d
+set $inactive-bg-color   #16161d
 set $text-color          #3d7cc9
 set $inactive-text-color #c6ccd5
 set $urgent-bg-color     #E53935
@@ -198,7 +165,7 @@ bar {
 		      focused_workspace  $bg-color          $bg-color          $text-color
 	          inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
 	          urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-              active_workspace   $inactive-bg-color $inactive-bg-color $inactive-text-color
+                  active_workspace   $inactive-bg-color $inactive-bg-color $inactive-text-color
         }
 }
 
@@ -216,7 +183,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 exec --no-startup-id nitrogen --restore
 
 # starting compositor
-exec --no-startup-id compton
+exec_always --no-startup-id compton -b --config ~/.compton.conf  
 
 # starting network manager applet
 exec --no-startup-id nm-applet
@@ -230,11 +197,6 @@ exec_always xautolock -time 10 -locker /home/hegole/.config/i3/lock.sh
 
 # set screen layout
 exec --no-startup-id ~/.screenlayout/screenlayout.sh
-
-# set primary monitor
-exec --no-startup-id xrandr DP-0 --output primary
-
-exec --no-startup-id synergy
 
 # remove application title bar
 for_window [class="^.*"] border pixel 0
