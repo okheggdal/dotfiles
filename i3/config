@@ -81,16 +81,16 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # setting workspace names
-set $workspace1 "1:  Terminal |"
-set $workspace2 "2:  Chromium |"
-set $workspace3 "3:  Random |"
-set $workspace4 "4:  Chat |"
-set $workspace5 "5:  Random |"
-set $workspace6 "6:  Editor |"
-set $workspace7 "7:  Spotify |"
-set $workspace8 "8:  Editor |"
-set $workspace9 "9:  Extra |"
-set $workspace10 "10:  Email |"
+set $workspace1 "1:  Terminal"
+set $workspace2 "2:  Chromium"
+set $workspace3 "3:  Editor"
+set $workspace4 "4:  Chat"
+set $workspace5 "5:  Random"
+set $workspace6 "6:  Editor"
+set $workspace7 "7:  Spotify"
+set $workspace8 "8:  Editor"
+set $workspace9 "9:  Extra"
+set $workspace10 "10:  Email"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -171,8 +171,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $bg-color 	         #3e424f
-set $inactive-bg-color   #3e424f
+set $bg-color 	         #fbf5f5
+set $inactive-bg-color   #fbf5f5
 set $text-color          #3d7cc9
 set $inactive-text-color #c6ccd5
 set $urgent-bg-color     #E53935
@@ -205,9 +205,9 @@ bar {
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # key-bindings
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
 
 # starting teamviewer
 #exec --no-startup-id teamviewer
@@ -216,7 +216,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 exec --no-startup-id nitrogen --restore
 
 # starting compositor
-exec --no-startup-id compton
+exec --no-startup-id compton --config ~/.compton.conf -b
 
 # starting network manager applet
 exec --no-startup-id nm-applet
